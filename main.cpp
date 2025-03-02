@@ -102,7 +102,7 @@ int main(int argc, const char** argv) {
 
       while(!tracer_exit) {
         auto evt = poll_event(1000);
-        if(WIFEXITED(evt.wait_status)) {
+        if(WIFEXITED(evt.wait_status) && evt.tid == pid) {
           std::cout << "[tracer]: tracee exited" << std::endl;
           tracer_exit = true;
         } else {
